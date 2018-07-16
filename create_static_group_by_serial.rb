@@ -16,6 +16,7 @@ print "Name of Static Group to create: "
 newGroup = gets.strip
 
 jamf_server="YOUR SERVER HERE"
+jamf_port=8443 #change if you use a non-standard port
 jamf_user="YOUR API USER HERE"
 jamf_pass="YOUR API PASS HERE"
 
@@ -23,7 +24,7 @@ jamf_pass="YOUR API PASS HERE"
 sn_fails = []
 
 # Connect to the jamf pro server
-JSS::API.connect server: "#{jamf_server}" , port: 443, use_ssl: true, ssl_version: 'TLSv1_2', timeout: 600, user: "#{jamf_user}", pw: "#{jamf_pass}" 
+JSS::API.connect server: "#{jamf_server}" , port: "#{jamf_port}, use_ssl: true, ssl_version: 'TLSv1_2', timeout: 600, user: "#{jamf_user}", pw: "#{jamf_pass}" 
 
 # Check that the name does not conflict with current groups
 while JSS::ComputerGroup.all_names.include? newGroup
